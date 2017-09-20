@@ -31,6 +31,10 @@ app.get('/', function(req, res) {
 const itemRoutes = require('./routes/itemroutes');
 app.use('/inventory', itemRoutes);
 
+//recipe route
+const recipeRoutes = require('./routes/recipeRoutes');
+app.use('/savedrecipes', recipeRoutes);
+
 //404 handling
 app.get('*', function(req,res) {
   res.status(404).send({message: 'Whoops! It\'s not here, playa.'});
