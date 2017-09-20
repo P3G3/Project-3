@@ -7,7 +7,7 @@ CREATE TABLE ingredients (
   ingredient VARCHAR(1024)
 );
 
--- Populates the table with values
+-- Populates the table with data
 -- Source:  http://www.cookinglight.com/food/quick-healthy/best-ingredients-quick-cooking#brown-rice
 INSERT INTO ingredients (ingredient) VALUES
 ('Boil-in-Bag Brown Rice'),
