@@ -5,8 +5,9 @@ const itemController = {};
 
 //controller to find all items from database
 itemController.index = (req,res) => {
-  Pantry.findAll()
+  Item.findAll()
     .then(items => {
+      console.log(items);
       res.json({
         message: 'ok',
         data: {items},

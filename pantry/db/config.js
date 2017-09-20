@@ -1,6 +1,6 @@
 // Creates an object for use with PG Promise
 const options = {
-  query: e => console.log(e.query);
+  query: e => console.log(e.query),
 };
 
 // Imports PG Promise and
