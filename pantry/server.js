@@ -20,7 +20,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 //set up body-parser
 app.use(bodyParser.json());
-app.use()bodyParser.urlencoded({extended: false});
+app.use(bodyParser.urlencoded({extended: false}));
 
 //--ROUTES--
 //index route
