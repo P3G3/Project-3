@@ -7,6 +7,7 @@ const itemController = {};
 itemController.index = (req,res) => {
   Item.findAll()
     .then(items => {
+      console.log(items);
       res.json({
         message: 'ok',
         data: {items},
