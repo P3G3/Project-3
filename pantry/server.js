@@ -27,6 +27,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
+//item route
+const itemRoutes = require('.routes/itemroutes');
+app.use('/inventory', itemRoutes);
 
 //404 handling
 app.get('*', function(req,res) {
