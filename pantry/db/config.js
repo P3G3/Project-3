@@ -22,4 +22,5 @@ if (process.env.NODE_ENV === 'production') {
   db = pgp(process.env.DATABASE_URL);
 }
 
+// Shares functionality with the rest of the app
 module.exports = db;
