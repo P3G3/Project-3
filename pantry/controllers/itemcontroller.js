@@ -57,4 +57,39 @@ itemController.create = (req,res) => {
     });
   };
 
+//controller to update a single item
+itemController.update = (req,res) => {
+  Item.update({
+    // name: req.body
+  }, req.params.id)
+    .then(item => {
+      res.json({
+        message: 'item updated successfully',
+        data: {item},
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(400).json({
+        message: '400', err
+      });
+    });
+  };
+
+//controller to delete a single item
+itemController.delete = (req,res) => {
+  Item.destroy(req.params.id)
+    .then(item => {
+      res.json({
+        message: 'item deleted successfully',
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(400).json({
+        message: '400', err
+      });
+    });
+  };
+
 module.exports = itemController;
