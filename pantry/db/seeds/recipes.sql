@@ -4,9 +4,9 @@ DROP TABLE IF EXISTS recipes;
 -- Builds table
 CREATE TABLE recipes (
   id BIGSERIAL PRIMARY KEY,
-  name VARCHAR(1024),
-  url VARCHAR(1024),
-  img VARCHAR(1024)
+  name VARCHAR(255),
+  url TEXT NOT NULL,
+  img TEXT NOT NULL
 );
 
 -- Populates table with data

@@ -5,7 +5,16 @@ const path = require('path');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+
+// Imports required for authentication
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const passport = require('passport');
+
 const app = express();
+
+// Imports .env
+const dotenv = require('dotenv').config();
 
 //---PORT---
 //set up port with listener
@@ -24,6 +33,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 //set up method-override
 app.use(methodOverride('_method'));
+
+// Configurations required for authentication
+app.use(cookieParser());
+app.use(session({
+  secret: process.env.SECRET_KEY,
+  resave: false,
+  saveUninitialized: true,
+}));
+
+// Configures passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 //--ROUTES--
 //index route

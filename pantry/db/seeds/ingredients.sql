@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS ingredients;
 -- Builds table
 CREATE TABLE ingredients (
   id BIGSERIAL PRIMARY KEY,
-  ingredient VARCHAR(1024)
+  ingredient VARCHAR(255)
 );
 
 -- Populates the table with data
