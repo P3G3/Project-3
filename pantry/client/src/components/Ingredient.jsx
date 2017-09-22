@@ -25,8 +25,13 @@ class Ingredient extends Component {
   renderIngredient() {
     if (this.state.ingredientDataRecieved) {
       return (
-        <div>
-          <h3>{this.state.ingredient}</h3>
+        <div className="ingredient">
+          <input id="checkbox" type="checkbox" />
+          <h3 className='item'>{this.state.ingredient}</h3>
+          <div id="ingredientButtonContainer">
+            <button className="ingredientButton">{'\uD83D\uDD8A'}</button>
+            <button className="ingredientButton">{'\uD83D\uDDD1'}</button>
+          </div>
         </div>
       );
     }
@@ -35,7 +40,7 @@ class Ingredient extends Component {
 
   render() {
     return (
-      <div className="ingredient">
+      <div>
         {this.renderIngredient()}
       </div>
     );

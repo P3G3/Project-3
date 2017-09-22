@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Ingredient from './Ingredient';
+import Input from './partials/Input';
 
 class IngredientList extends Component {
   constructor() {
@@ -36,7 +37,9 @@ class IngredientList extends Component {
   render() {
     return (
       <div className="ingredientlist">
+        <Input />
         {this.renderIngredientList()}
+        <button>SUBMIT</button>
       </div>
     );
   };
