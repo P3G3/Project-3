@@ -39,8 +39,8 @@ itemController.show = (req,res) => {
   };
 
 //controller to create a single item
-itemController.create = (req,res) => {
-  Item.create({
+itemController.save = (req,res) => {
+  Item.save({
     // name: req.body
   })
     .then(item => {
