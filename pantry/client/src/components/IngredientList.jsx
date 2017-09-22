@@ -17,7 +17,7 @@ class IngredientList extends Component {
       .then((res) => {
         return res.json();
       }).then((jsonRes) => {
-        console.log(jsonRes.data.items);
+        //console.log(jsonRes.data.items);
         this.setState({
           ingredientListData: jsonRes.data.items,
           ingredientListDataReceived: true,
@@ -26,7 +26,7 @@ class IngredientList extends Component {
   }
 
   renderIngredientList() {
-    console.log(this.state.ingredientListDataReceived, this.state.ingredientListData);
+    //console.log(this.state.ingredientListDataReceived, this.state.ingredientListData);
     if (this.state.ingredientListDataReceived) {
       return this.state.ingredientListData.map((item) => {
         return <Ingredient ingredient={item} key={item.id} />
