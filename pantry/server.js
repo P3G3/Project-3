@@ -51,13 +51,22 @@ app.use(passport.session());
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
+
 //item route
-const itemRoutes = require('./routes/itemroutes');
+const itemRoutes = require('./routes/itemRoutes');
 app.use('/inventory', itemRoutes);
 
 //recipe route
 const recipeRoutes = require('./routes/recipeRoutes');
 app.use('/savedrecipes', recipeRoutes);
+
+// Routes authentication
+const authRoutes = require('./routes/authRoutes');
+app.use('/auth', authRoutes);
+
+// Routes users
+const userRoutes = require('./routes/userRoutes');
+app.use('/user', userRoutes);
 
 //404 handling
 app.get('*', function(req,res) {
