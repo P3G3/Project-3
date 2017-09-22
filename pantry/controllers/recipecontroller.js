@@ -40,10 +40,10 @@ recipeController.show = (req,res) => {
 //controller to create a single recipe
 recipeController.save = (req,res) => {
   Recipe.save({
-    // name:
-    // url:
-    // img:
-  })
+    name: req.body.name,
+    url: req.body.url,
+    img: req.body.img,
+  }, req.user.id)
     .then(recipe => {
       res.json({
         message: 'ok',
