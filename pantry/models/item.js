@@ -6,28 +6,51 @@ const Item = {};
 
 // Lists all entries
 Item.findAll = () => {
-  return db.query(
-    `SELECT * FROM ingredients`
-  );
+  return db.many(`
+    SELECT *
+      FROM ingredients
+  ORDER BY id
+  `);
 };
 
 // Finds a specific entry
-Item.findById = (id) => {
-  return db.oneOrNone(`
-    SELECT * FROM ingredients
-    WHERE id = $1`,
-    [id]
-  );
+Item.findById = id => {
+  return db.one(`
+    SELECT *
+      FROM ingredients
+     WHERE id = $1
+  `, id);
 };
 
 // Makes a new entry
-Item.create = (item) => {
+Item.save = item => {
   return db.one(`
-    INSERT INTO ingredients (ingredient)
-    VALUES ($1)
-    RETURNING *`,
-    [item.name]
-  );
+    INSERT INTO ingredients
+    (ingredient)
+    VALUES
+    ($/name/)
+    RETURNING *
+  `, item);
+};
+
+// Edits an existing entry
+Item.update = item => {
+  return db.one(`
+    UPDATE ingredients
+    SET
+    ingredient = $/name/
+    WHERE id = $/id/
+    RETURNING *
+  `, item);
+};
+
+// Removes an existing entry
+Item.destroy = id => {
+  return db.none(`
+    DELETE
+      FROM ingredients
+     WHERE id = $1
+  `, id);
 };
 
 // Shares functionality with the rest of the app
