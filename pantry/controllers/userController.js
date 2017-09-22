@@ -25,10 +25,19 @@ userController.create = (req, res) => {
 };
 
 userController.index = (req, res) => {
-  res.json({
-    user: req.user,
-    data: 'Put a user profile on this route',
-  });
+  User.findUserRecipes(req.user.id)
+    .then(recipes => {
+      res.json({
+        user: req.user,
+        data: 'Put a user profile on this route',
+        recipes: recipes,
+      });
+    })
+
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({err: err});
+    });
 };
 
 module.exports = userController;
