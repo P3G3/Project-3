@@ -26,9 +26,9 @@ Recipe.findById = id => {
 Recipe.save = recipe => {
   return db.one(`
     INSERT INTO recipes
-    (name, url, img)
+    (name, url, img, user_id)
     VALUES
-    ($/name/, $/url/, $/img/)
+    ($/name/, $/url/, $/img/, $/userid/)
     RETURNING *
   `, recipe);
 };
