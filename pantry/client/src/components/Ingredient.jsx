@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 
-class SingleIngredient extends Component {
+class Ingredient extends Component {
   constructor(props){
     super(props);
-    this.id = this.props.match.params.id;
     this.state = {
+      id: this.props.ingredient.id,
       ingredient: null,
       ingredientDataRecieved: false,
     }
 
   }
   componentDidMount(){
-   fetch(`http://localhost:3000/inventory/${this.id}`)
+   fetch(`http://localhost:3000/inventory/${this.state.id}`)
     .then((res) => {
-        console.log(res);
         return res.json();
       }).then((jsonRes) => {
         this.setState({
-          ingredient: jsonRes.ingredient,
+          ingredient: jsonRes.data.item.ingredient,
           ingredientDataRecieved: true,
         });
       });
@@ -26,8 +25,8 @@ class SingleIngredient extends Component {
   renderIngredient() {
     if (this.state.ingredientDataRecieved) {
       return (
-        <div className="ingredient">
-          <h3>{this.state.item.ingredient}</h3>
+        <div>
+          <h3>{this.state.ingredient}</h3>
         </div>
       );
     }
@@ -43,4 +42,4 @@ class SingleIngredient extends Component {
   };
 }
 
-export default SingleIngredient;
+export default Ingredient;

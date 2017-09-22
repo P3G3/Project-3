@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import Ingredient from './Ingredient';
 
 class IngredientList extends Component {
   constructor() {
     super();
     // state
     this.state = {
-      ingredientListData: [],
+      ingredientListData: null,
       ingredientListDataReceived: false,
     }
   }
@@ -15,24 +16,27 @@ class IngredientList extends Component {
       .then((res) => {
         return res.json();
       }).then((jsonRes) => {
-        console.log(jsonRes.data);
+        console.log(jsonRes.data.items);
         this.setState({
-          ingredientListData: jsonRes.data,
+          ingredientListData: jsonRes.data.items,
           ingredientListDataReceived: true,
         })
       })
   }
 
   renderIngredientList() {
-      return this.state.ingredientListData.map((ingredient) => {
-        console.log()
-    });
-}
+    console.log(this.state.ingredientListDataReceived, this.state.ingredientListData);
+    if (this.state.ingredientListDataReceived) {
+      return this.state.ingredientListData.map((item) => {
+        return <Ingredient ingredient={item} key={item.id} />
+      });
+    }// } else return <Loading />
+  }
 
   render() {
     return (
       <div className="ingredientlist">
-        {this.renderIngredientList}
+        {this.renderIngredientList()}
       </div>
     );
   };
