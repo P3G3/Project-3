@@ -38,9 +38,9 @@ recipeController.show = (req,res) => {
   };
 
 //controller to create a single recipe
-recipeController.create = (req,res) => {
-  Recipe.create({
-    // name: req.body
+recipeController.save = (req,res) => {
+  Recipe.save({
+    // name:
     // url:
     // img:
   })
