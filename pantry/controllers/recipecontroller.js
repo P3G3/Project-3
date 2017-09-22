@@ -23,7 +23,7 @@ recipeController.index = (req,res) => {
 //controller to return a single recipe
 recipeController.show = (req,res) => {
   Recipe.findById(req.params.id)
-    .then(item => {
+    .then(recipe => {
       res.json({
         message: 'ok',
         data: {recipe},

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Ingredient from './Ingredient';
+import Input from './partials/Input';
 
 class IngredientList extends Component {
   constructor() {
@@ -16,7 +17,7 @@ class IngredientList extends Component {
       .then((res) => {
         return res.json();
       }).then((jsonRes) => {
-        console.log(jsonRes.data.items);
+        //console.log(jsonRes.data.items);
         this.setState({
           ingredientListData: jsonRes.data.items,
           ingredientListDataReceived: true,
@@ -25,7 +26,7 @@ class IngredientList extends Component {
   }
 
   renderIngredientList() {
-    console.log(this.state.ingredientListDataReceived, this.state.ingredientListData);
+    //console.log(this.state.ingredientListDataReceived, this.state.ingredientListData);
     if (this.state.ingredientListDataReceived) {
       return this.state.ingredientListData.map((item) => {
         return <Ingredient ingredient={item} key={item.id} />
@@ -36,7 +37,9 @@ class IngredientList extends Component {
   render() {
     return (
       <div className="ingredientlist">
+        <Input />
         {this.renderIngredientList()}
+        <button>SUBMIT</button>
       </div>
     );
   };
