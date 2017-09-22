@@ -19,8 +19,8 @@ const dotenv = require('dotenv').config();
 //---PORT---
 //set up port with listener
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, function() {
-  console.log(`listening on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });
 
 //---MIDDLEWARE---
@@ -58,7 +58,7 @@ app.use('/inventory', itemRoutes);
 
 //recipe route
 const recipeRoutes = require('./routes/recipeRoutes');
-app.use('/savedrecipes', recipeRoutes);
+app.use('/recipes', recipeRoutes);
 
 // Routes authentication
 const authRoutes = require('./routes/authRoutes');
@@ -69,6 +69,8 @@ const userRoutes = require('./routes/userRoutes');
 app.use('/user', userRoutes);
 
 //404 handling
-app.get('*', function(req,res) {
-  res.status(404).send({message: 'Whoops! It\'s not here, playa.'});
+app.get('*', (req,res) => {
+  res.status(404).send({
+    message: 'Whoops! It\'s not here, playa.',
+  });
 });

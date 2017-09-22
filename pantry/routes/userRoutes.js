@@ -1,8 +1,8 @@
 const express = require('express');
 const userRoutes = express.Router();
-const usersController = require('../controllers/users-controller');
-const authHelpers = require('../services/auth/auth-helpers');
+const autHelpers = require('../services/auth/autHelpers');
+const userController = require('../controllers/userController');
 
-userRoutes.get('/', authHelpers.loginRequired, usersController.index);
+userRoutes.get('/', autHelpers.loginRequired, userController.index);
 
 module.exports = userRoutes;
