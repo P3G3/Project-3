@@ -19,3 +19,10 @@ authRouter.post('/login', passport.authenticate('local', {
     failureFlash: true,
   })
 );
+
+authRouter.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+});
+
+module.exports = authRouter;
