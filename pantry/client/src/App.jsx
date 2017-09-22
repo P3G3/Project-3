@@ -6,8 +6,8 @@ import Footer from './components/partials/Footer';
 import {Route, Redirect, Switch} from 'react-router-dom';
 import Home from './components/Home';
 import IngredientList from './components/IngredientList';
-import Recipes from './components/Recipes';
-
+import RecipeList from './components/RecipeList';
+import Recipes from './components/Recipes'
 class App extends Component {
   render() {
     return (
@@ -15,9 +15,10 @@ class App extends Component {
         <Header />
           <main>
             <Switch>
-              <Route path= "/inventory" component= {IngredientList} />
+              <Route path="/recipes/:id" component={Recipes} />
               <Route exact path="/" component={Home} />
-              <Route exact path="/recipes" component={Recipes} />
+              <Route exact path= "/inventory" component= {IngredientList} />
+              <Route exact path="/recipes" component={RecipeList} />
 
 
               <Redirect to="/" />

@@ -36,7 +36,7 @@ app.use('/inventory', itemRoutes);
 
 //recipe route
 const recipeRoutes = require('./routes/recipeRoutes');
-app.use('/savedrecipes', recipeRoutes);
+app.use('/recipes', recipeRoutes);
 
 //404 handling
 app.get('*', function(req,res) {
