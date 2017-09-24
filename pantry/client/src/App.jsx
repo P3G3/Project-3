@@ -12,16 +12,6 @@ import RecipeList from './components/RecipeList';
 
 
 class App extends Component {
-  constructor(){
-    super();
-    this.state = {
-      inputItemValue: '',
-    }
-}
-
-  handleItemSubmit(e){
-    e.preventDefault();
-  }
 
   render() {
     return (

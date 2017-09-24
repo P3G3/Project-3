@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Ingredient from './Ingredient';
 import Input from './partials/Input';
+import axios from 'axios';
 
 class IngredientList extends Component {
   constructor() {
@@ -9,10 +10,13 @@ class IngredientList extends Component {
     this.state = {
       ingredientListData: null,
       ingredientListDataReceived: false,
+      inputItemValue: '',
       searchIngredients: [],
     }
+    this.handleItemSubmit = this.handleItemSubmit.bind(this);
     this.handleItemDelete = this.handleItemDelete.bind(this);
     this.renderIngredientList = this.renderIngredientList.bind(this);
+    this.handleInputItemChange = this.handleInputItemChange.bind(this);
   }
 
   componentDidMount() {
@@ -28,12 +32,38 @@ class IngredientList extends Component {
       })
   }
 
+  handleItemSubmit(e){
+    e.preventDefault();
+    axios.post(`http://localhost:3001/inventory`, {
+      ingredient: this.state.inputItemValue
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        fetch('http://localhost:3000/inventory')
+      .then((res) => {
+        return res.json();
+      }).then((jsonRes) => {
+        this.setState((prevState) => { return {
+          ingredientListData: jsonRes.data.items,
+        }
+      });
+    });
+  }
+});
+}
+
+  handleInputItemChange(event) {
+    console.log(event.target.value);
+    this.setState({
+      inputItemValue: event.target.value
+    });
+  }
+
   handleItemDelete(quoteId){
     fetch(`http://localhost:3001/inventory/${quoteId}`, {
       method: 'DELETE',
     })
     .then((response) => {
-      console.log(response);
       if (response.status === 200) {
         fetch('http://localhost:3000/inventory')
       .then((res) => {
@@ -60,7 +90,7 @@ class IngredientList extends Component {
   render() {
     return (
       <div className="ingredientlist">
-        <Input />
+        <Input handleInputItemChange={this.handleInputItemChange} handleItemSubmit={this.handleItemSubmit} inputItemValue={this.state.inputItemValue}/>
         {this.renderIngredientList()}
         <button>Find Recipes</button>
       </div>
