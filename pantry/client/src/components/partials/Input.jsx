@@ -7,6 +7,7 @@ class Input extends Component {
         onSubmit={this.props.handleItemSubmit}
       >
         <input
+          id="addItem"
           type="text"
           placeholder="Add New Item Here"
         />

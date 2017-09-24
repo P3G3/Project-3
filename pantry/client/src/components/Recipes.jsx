@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 class Recipes extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
-    this.state ={
+    this.state = {
       id: this.props.recipe.id,
       url: null,
       img: null,

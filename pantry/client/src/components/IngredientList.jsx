@@ -9,7 +9,10 @@ class IngredientList extends Component {
     this.state = {
       ingredientListData: null,
       ingredientListDataReceived: false,
+      searchIngredients: [],
     }
+    this.handleItemDelete = this.handleItemDelete.bind(this);
+    this.renderIngredientList = this.renderIngredientList.bind(this);
   }
 
   componentDidMount() {
@@ -25,11 +28,31 @@ class IngredientList extends Component {
       })
   }
 
+  handleItemDelete(quoteId){
+    fetch(`http://localhost:3001/inventory/${quoteId}`, {
+      method: 'DELETE',
+    })
+    .then((response) => {
+      console.log(response);
+      if (response.status === 200) {
+        fetch('http://localhost:3000/inventory')
+      .then((res) => {
+        return res.json();
+      }).then((jsonRes) => {
+        this.setState((prevState) => { return {
+          ingredientListData: jsonRes.data.items,
+        }
+      });
+    });
+  }
+});
+}
+
   renderIngredientList() {
     //console.log(this.state.ingredientListDataReceived, this.state.ingredientListData);
     if (this.state.ingredientListDataReceived) {
       return this.state.ingredientListData.map((item) => {
-        return <Ingredient ingredient={item} key={item.id} />
+        return <Ingredient handleItemDelete={this.handleItemDelete} ingredient={item} key={item.id} />
       });
     }// } else return <Loading />
   }
@@ -39,7 +62,7 @@ class IngredientList extends Component {
       <div className="ingredientlist">
         <Input />
         {this.renderIngredientList()}
-        <button>SUBMIT</button>
+        <button>Find Recipes</button>
       </div>
     );
   };
