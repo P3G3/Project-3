@@ -9,23 +9,25 @@ class ResultList extends Component {
     }
   }
   componentDidMount(){
-    fetch('http://localhost:3000/results')
-      .then((res)=>{
+    fetch('http://localhost:3001/results')
+      .then((req, res)=>{
+      console.log(req);
+      console.log(res);
       this.setState({
         resultData: res.data.recipes
       })
     })
   }
-  renderResult() {
-    return this.state.resultData.map((results)=>{
-      return <Results result={results} key={results.id} />
-    });
-  }
+  // renderResult() {
+  //   return this.state.resultData.map((results)=>{
+  //     return <Results result={results} key={results.id} />
+  //   });
+  // }
 
   render() {
     return (
       <div className="resultList">
-      {this.renderResult()}
+
       </div>
     );
   }
