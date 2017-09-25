@@ -13,7 +13,7 @@ class Recipes extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/recipes/${this.state.id}`)
+    fetch(`/recipes/${this.state.id}`)
       .then((res) => {
         return res.json();
       }).then((jsonRes) => {

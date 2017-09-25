@@ -4,10 +4,11 @@ const axios = require("axios");
 //create object for recipe controller
 const resultsController = {};
 
-//controller to find all recipes from database
+//controller to search recipes from Food2Fork API
 resultsController.index = (req,res) => {
-  axios(`http://food2fork.com/api/search?key=009041d6686e69bcfa223c2b77a95136&q=chicken`)
+  axios(`http://food2fork.com/api/search?key=QI&q=chicken`)
     .then(results => {
+      console.log(req);
       let result = results.data.recipes;
       let arr = result.map(el => {return {
           name: el.title,

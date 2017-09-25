@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Ingredient from './Ingredient';
 import Input from './partials/Input';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 class IngredientList extends Component {
   constructor() {
@@ -20,7 +21,7 @@ class IngredientList extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/inventory')
+    fetch('/inventory')
       .then((res) => {
         console.log(res);
         return res.json();
@@ -36,12 +37,12 @@ class IngredientList extends Component {
 
   handleItemSubmit(e){
     e.preventDefault();
-    axios.post(`http://localhost:3001/inventory`, {
+    axios.post(`/inventory`, {
       ingredient: this.state.inputItemValue
     })
     .then((response) => {
       if (response.status === 200) {
-        fetch('http://localhost:3000/inventory')
+        fetch('/inventory')
       .then((res) => {
         return res.json();
       }).then((jsonRes) => {
@@ -62,12 +63,12 @@ class IngredientList extends Component {
   }
 
   handleItemDelete(quoteId){
-    fetch(`http://localhost:3001/inventory/${quoteId}`, {
+    fetch(`/inventory/${quoteId}`, {
       method: 'DELETE',
     })
     .then((response) => {
       if (response.status === 200) {
-        fetch('http://localhost:3000/inventory')
+        fetch('/inventory')
       .then((res) => {
         return res.json();
       }).then((jsonRes) => {
@@ -94,7 +95,7 @@ class IngredientList extends Component {
       <div className="ingredientlist">
         <Input handleInputItemChange={this.handleInputItemChange} handleItemSubmit={this.handleItemSubmit} inputItemValue={this.state.inputItemValue}/>
         {this.renderIngredientList()}
-        <button>Find Recipes</button>
+        <Link to={`/results`}>Recipes</Link>
       </div>
     );
   };

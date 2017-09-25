@@ -10,7 +10,7 @@ class ResultList extends Component {
   }
 
   componentDidMount(){
-    fetch('http://localhost:3001/results')
+    fetch('/results')
       .then((res)=>{
       return res.json();
     }).then((jsonRes) => {
