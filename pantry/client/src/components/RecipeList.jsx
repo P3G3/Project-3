@@ -36,7 +36,7 @@ class RecipeList extends Component {
 
   render() {
     return (
-      <div className="recipelist">
+      <div className="recipeList">
         {this.renderRecipeList()}
       </div>
     );
