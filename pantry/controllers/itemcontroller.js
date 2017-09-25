@@ -40,7 +40,7 @@ itemController.show = (req,res) => {
 //controller to create a single item
 itemController.save = (req,res) => {
   Item.save({
-    // name: req.body
+    name: req.body.ingredient
   })
     .then(item => {
       res.json({
