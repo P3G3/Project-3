@@ -5,6 +5,7 @@ const recipeController = require('../controllers/recipeController');
 
 //index and create routes for recipes
 recipeRoutes.get('/', recipeController.index);
+
 recipeRoutes.post('/', autHelpers.loginRequired, recipeController.save);
 
 //show one and delete routes for recipes
