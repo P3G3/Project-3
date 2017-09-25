@@ -1,33 +1,43 @@
 import React,{ Component } from 'react';
-import Results from './Results';
 
 class ResultList extends Component {
   constructor() {
     super();
     this.state= {
       resultData: null,
+      resultDataReceived: false,
     }
   }
+
   componentDidMount(){
     fetch('http://localhost:3001/results')
-      .then((req, res)=>{
-      console.log(req);
-      console.log(res);
+      .then((res)=>{
+      return res.json();
+    }).then((jsonRes) => {
       this.setState({
-        resultData: res.data.recipes
-      })
-    })
+        resultData: jsonRes.data.arr,
+        resultDataReceived: true,
+      });
+      console.log(this.state.resultData);
+    });
   }
-  // renderResult() {
-  //   return this.state.resultData.map((results)=>{
-  //     return <Results result={results} key={results.id} />
-  //   });
-  // }
+
+  renderResults() {
+    if(this.state.resultDataReceived){
+      return this.state.resultData.map((result) => {
+        return <div className="my-recipe">
+          <h3>{result.name}</h3>
+          <img src={result.img} />
+          <a href={result.url} target="_blank">See Recipe</a>
+        </div>
+      });
+    }
+  }
 
   render() {
     return (
       <div className="resultList">
-
+        {this.renderResults()}
       </div>
     );
   }

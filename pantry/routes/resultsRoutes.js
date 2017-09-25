@@ -1,11 +1,10 @@
 const express = require('express');
-const recipeController = require('../controllers/recipeController');
-const api = require('../api');
+const resultsController = require('../controllers/resultsController');
 
 const resultsRoutes = express.Router();
 
 //index and create routes for results
-resultsRoutes.get('/', api.makeAxiosGet);
+resultsRoutes.get('/', resultsController.index);
 // resultsRoutes.post('/:id', recipeController.save);
 
 module.exports = resultsRoutes;

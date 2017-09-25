@@ -22,9 +22,11 @@ class IngredientList extends Component {
   componentDidMount() {
     fetch('http://localhost:3000/inventory')
       .then((res) => {
+        console.log(res);
         return res.json();
       }).then((jsonRes) => {
         //console.log(jsonRes.data.items);
+        console.log(jsonRes);
         this.setState({
           ingredientListData: jsonRes.data.items,
           ingredientListDataReceived: true,
