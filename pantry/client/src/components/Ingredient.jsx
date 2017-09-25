@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 
 class Ingredient extends Component {
   constructor(props){
@@ -10,7 +10,6 @@ class Ingredient extends Component {
       ingredientDataRecieved: false,
     }
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-    this.handleIngredientSubmit = this.handleIngredientSubmit.bind(this);
 }
 
   componentDidMount(){
@@ -39,30 +38,6 @@ class Ingredient extends Component {
       })
       console.log(this.state.isChecked);
     }
-  }
-
-  handleIngredientSubmit(e){
-    e.preventDefault();
-    // console.log(this.id);
-  }
-
-  handleIngredientEdit(event){
-    event.preventDefault();
-
-    fetch(`http://localhost:3000/inventory/${this.state.id}`, {
-      method: 'PUT',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        ingredient: event.target.content.value,
-        author: event.target.author.value,
-        genre_id: event.target.genre_type.value
-      }),
-    })
-    .then((response) => {
-      if (response.status === 200) {
-        this.fetchAllQuotes();
-      }
-    })
   }
 
   renderIngredient() {

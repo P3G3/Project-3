@@ -9,7 +9,7 @@ class ResultList extends Component {
     }
   }
   componentDidMount(){
-    fetch('http://localhost:3000/results')
+    fetch('http://localhost:3001/results')
       .then((res)=>{
       this.setState({
         resultData: res.data.recipes
