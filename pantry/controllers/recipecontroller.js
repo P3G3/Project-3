@@ -37,26 +37,6 @@ recipeController.show = (req,res) => {
     });
   };
 
-//controller to create a single recipe
-recipeController.save = (req,res) => {
-  Recipe.save({
-    // name:
-    // url:
-    // img:
-  })
-    .then(recipe => {
-      res.json({
-        message: 'ok',
-        data: {recipe},
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(400).json({
-        message: '400', err
-      });
-    });
-  };
 
 //controller to delete a single recipe
 recipeController.delete = (req,res) => {
