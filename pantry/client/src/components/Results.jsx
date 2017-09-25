@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
 class Results extends Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
 
     this.state ={
-      id: this.props.recipes.recipe_id,
       name: null,
       img: null,
       url: null,
@@ -18,19 +17,20 @@ class Results extends Component {
       return res.json();
     }).then((jsonRes) => {
       this.setState({
-        name: jsonRes.data.recipes.title,
-        img: jsonRes.data.recipes.image_url,
-        url: jsonRes.data.recipes.source_url,
+        name: jsonRes.data.arr.name,
+        img: jsonRes.data.arr.image,
+        url: jsonRes.data.arr.url,
       })
     })
   }
-  renderResult() {
+
+  render() {
     return (
       <div className="my-recipe">
-    <h3>{this.state.name}</h3>
-    <img src={this.state.img} />
-    <a href={this.state.url}>{this.state.name}</a>
-    </div>
+        <h3>{this.state.name}</h3>
+        <img src={this.state.img} />
+        <a href={this.state.url}>{this.state.name}</a>
+      </div>
     );
   };
 }
