@@ -61,9 +61,9 @@ app.get('/', function(req, res) {
 const itemRoutes = require('./routes/itemRoutes');
 app.use('/inventory', itemRoutes);
 
-// //route to external API axios call
-// const resultsRoutes = require('./routes/resultsRoutes');
-// app.use('/results', resultsRoutes);
+//route to external API axios call
+const resultsRoutes = require('./routes/resultsRoutes');
+app.use('/results', resultsRoutes);
 
 //recipe route
 const recipeRoutes = require('./routes/recipeRoutes');

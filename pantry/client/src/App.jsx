@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import axios from 'axios';
 import Header from './components/partials/Header';
 import Footer from './components/partials/Footer';
 
@@ -9,7 +8,7 @@ import Home from './components/Home';
 import IngredientList from './components/IngredientList';
 import Recipes from './components/Recipes';
 import RecipeList from './components/RecipeList';
-
+import ResultList from './components/ResultList'
 
 class App extends Component {
 
@@ -23,8 +22,8 @@ class App extends Component {
               <Route path="/recipes/:id" component={Recipes} />
               <Route path= "/inventory" component={IngredientList} />
               <Route exact path="/" component={Home} />
-              <Route exact path= "/inventory" component= {IngredientList} />
               <Route exact path="/recipes" component={RecipeList} />
+              <Route exact path="/results" component={ResultList} />
 
 
               <Redirect to="/" />
