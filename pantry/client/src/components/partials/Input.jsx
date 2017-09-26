@@ -12,7 +12,7 @@ class Input extends Component {
           value={this.props.inputItemValue}
           type="text"
           name="ingredient"
-          placeholder="Add New Item Here"
+          placeholder="Add New Item To Your Pantry"
           onChange={this.props.handleInputItemChange}
         />
       </form>

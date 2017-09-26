@@ -43,16 +43,11 @@ class Ingredient extends Component {
   renderIngredient() {
     if (this.state.ingredientDataRecieved) {
       return (
-        <div>
-          <form onSubmit={this.handleIngredientSubmit} className="ingredient">
+          <form onSubmit={this.handleIngredientSubmit} className="ingredients">
             <input id={this.state.id} className="checkbox" type="checkbox" onChange={this.handleCheckboxChange} onClick={() => {this.props.handleSearchAdd(this.state.ingredient)}} value={this.state.isChecked}/>
-            <h3 className='item'>{this.state.ingredient} --- {this.state.isChecked}</h3>
-            <div id="ingredientButtonContainer">
-              <button className="ingredientButton" id="itemEdit">{'\uD83D\uDD8A'}</button>
-              <button className="ingredientButton" onClick={()=>{this.props.handleItemDelete(this.state.id)}} id="itemDelete">{'\uD83D\uDDD1'}</button>
-            </div>
+            <div className='item'>{this.state.ingredient}</div>
+            <button className="ingredientButton" onClick={()=>{this.props.handleItemDelete(this.state.id)}} id="itemDelete">{'\uD83D\uDDD1'}</button>
           </form>
-        </div>
       );
     }
   }
@@ -60,7 +55,7 @@ class Ingredient extends Component {
 
   render() {
     return (
-      <div>
+      <div className='itemHolder'>
         {this.renderIngredient()}
       </div>
     );

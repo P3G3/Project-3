@@ -36,10 +36,11 @@ class ResultList extends Component {
   renderResults() {
     if(this.state.resultDataReceived){
       return this.state.resultData.map((result, i) => {
-        return <div key={i} className="my-recipe">
-          <a href={result.url} target="_blank"><h3>{result.name}</h3></a>
-          <img src={result.img} />
-          <button onClick={this.handleRecipeAdd} id={i}>ADD</button>
+        return <div key={i} className="myrecipe">
+          <a className="link" href={result.url} target="_blank"><h3 className='recipeHeader'>{result.name}</h3></a>
+          <img className="image" src={result.img} />
+          <button className="recipeButton" onClick={this.handleRecipeAdd} id={i}>Save</button>
+          <hr width="90%"/>
         </div>
       });
     }

@@ -2,7 +2,7 @@
 const axios = require("axios");
 const dotenv = require('dotenv').config();
 
-const QI = process.env.QI;
+let QI = process.env.QI;
 
 //create object for recipe controller
 const resultsController = {};
@@ -14,7 +14,6 @@ resultsController.index = (req,res) => {
   axios(`http://food2fork.com/api/search?key=${QI}&${qInject}`)
     .then(results => {
       let query = req.headers.referer;
-      console.log(query.substr(query.indexOf('?') + 1));
       let result = results.data.recipes;
       let arr = result.map(el => {return {
           name: el.title,
