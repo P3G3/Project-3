@@ -8,6 +8,7 @@ const methodOverride = require('method-override');
 const axios = require("axios");
 const cors = require('cors');
 const app = express();
+const dotenv = require('dotenv').config();
 
 //---PORT---
 //set up port with listener
@@ -18,7 +19,7 @@ app.listen(PORT, function() {
 
 //---MIDDLEWARE---
 //set up static file
-app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 //set up logger middleware
 app.use(logger('dev'));
 //set up cors middleware
@@ -47,7 +48,9 @@ app.use('/results', resultsRoutes);
 const recipeRoutes = require('./routes/recipeRoutes');
 app.use('/recipes', recipeRoutes);
 
-//404 handling
-app.get('*', function(req,res) {
-  res.status(404).send({message: 'Whoops! It\'s not here, playa.'});
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
+

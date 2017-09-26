@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Ingredient from './Ingredient';
 import Input from './partials/Input';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 class IngredientList extends Component {
   constructor() {
@@ -17,16 +18,14 @@ class IngredientList extends Component {
     this.handleItemDelete = this.handleItemDelete.bind(this);
     this.renderIngredientList = this.renderIngredientList.bind(this);
     this.handleInputItemChange = this.handleInputItemChange.bind(this);
+    this.handleSearchAdd = this.handleSearchAdd.bind(this);
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/inventory')
+    fetch('/inventory')
       .then((res) => {
-        console.log(res);
         return res.json();
       }).then((jsonRes) => {
-        //console.log(jsonRes.data.items);
-        console.log(jsonRes);
         this.setState({
           ingredientListData: jsonRes.data.items,
           ingredientListDataReceived: true,
@@ -36,12 +35,12 @@ class IngredientList extends Component {
 
   handleItemSubmit(e){
     e.preventDefault();
-    axios.post(`http://localhost:3001/inventory`, {
+    axios.post(`/inventory`, {
       ingredient: this.state.inputItemValue
     })
     .then((response) => {
       if (response.status === 200) {
-        fetch('http://localhost:3000/inventory')
+        fetch('/inventory')
       .then((res) => {
         return res.json();
       }).then((jsonRes) => {
@@ -61,13 +60,20 @@ class IngredientList extends Component {
     });
   }
 
-  handleItemDelete(quoteId){
-    fetch(`http://localhost:3001/inventory/${quoteId}`, {
+  handleSearchAdd(ingredient){
+    this.setState((prevState) => {
+      return {
+      searchIngredients: prevState.searchIngredients.concat(ingredient),
+    }}
+  )}
+
+  handleItemDelete(id){
+    fetch(`/inventory/${id}`, {
       method: 'DELETE',
     })
     .then((response) => {
       if (response.status === 200) {
-        fetch('http://localhost:3000/inventory')
+        fetch('/inventory')
       .then((res) => {
         return res.json();
       }).then((jsonRes) => {
@@ -84,7 +90,7 @@ class IngredientList extends Component {
     //console.log(this.state.ingredientListDataReceived, this.state.ingredientListData);
     if (this.state.ingredientListDataReceived) {
       return this.state.ingredientListData.map((item) => {
-        return <Ingredient handleItemDelete={this.handleItemDelete} ingredient={item} key={item.id} />
+        return <Ingredient handleSearchAdd={this.handleSearchAdd} handleItemDelete={this.handleItemDelete} ingredient={item} key={item.id} />
       });
     }// } else return <Loading />
   }
@@ -94,7 +100,7 @@ class IngredientList extends Component {
       <div className="ingredientlist">
         <Input handleInputItemChange={this.handleInputItemChange} handleItemSubmit={this.handleItemSubmit} inputItemValue={this.state.inputItemValue}/>
         {this.renderIngredientList()}
-        <button>Find Recipes</button>
+        <button><Link to={`/results/?q=${this.state.searchIngredients}`}>Find Recipes</Link></button>
       </div>
     );
   };
