@@ -97,11 +97,13 @@ class IngredientList extends Component {
 
   render() {
     return (
-      <div className="ingredientlist">
+        <div id="background">
         <Input handleInputItemChange={this.handleInputItemChange} handleItemSubmit={this.handleItemSubmit} inputItemValue={this.state.inputItemValue}/>
-        {this.renderIngredientList()}
-        <button><Link to={`/results/?q=${this.state.searchIngredients}`}>Find Recipes</Link></button>
-      </div>
+          <div className="ingredientlist">
+            {this.renderIngredientList()}
+          </div>
+          <button id="findResults"><Link className='link' to={`/results/?q=${this.state.searchIngredients}`}>Find Recipes</Link></button>
+        </div>
     );
   };
 }

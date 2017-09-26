@@ -2,13 +2,37 @@
   text-align: center;
 }
 
-.ingredient {
+#background {
+  background-image: url(https://www.wood-mode.com/sites/default/files/Zebra-Wood-lg_0.jpg);
+}
+
+.header{
+  background-image: url(https://www.wood-mode.com/sites/default/files/Zebra-Wood-lg_0.jpg);
+}
+
+.home {
+
+}
+
+.logo{
+  font-size: 46px;
+  color: whitesmoke;
+  margin-top: 0px;
+  text-shadow: 6px 6px black;
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+  text-align: left;
+  margin-left: 45px;
+}
+
+.ingredients {
   margin: auto;
   width: 70%;
-  border: 1px solid green;
+  border-radius: 10px;
   display: flex;
   justify-content: flex-start;
   height: 40px;
+  background-color: black;
+  color: white;
 }
 
 .item{
@@ -21,20 +45,55 @@
   margin-left: 10px;
 }
 
-#ingredientButton{
-
+.ingredientlist {
+  display: flex;
+  flex-wrap: wrap;
 }
 
+#addItem{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  height: 25px;
+  text-align: center;
+  width: 200px;
+  border-radius: 10px;
+}
+
+.itemHolder {
+  width: 275px;
+  height: 40px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;;
+  margin: 10px 0;
+}
 .ingredientButton {
   height: 100%;
   width: 50px;
   font-size: 20px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: slategray;
+}
+
+.recipeButton {
+  height: 75px;
+  width: 75px;
+  font-size: 25px;
+  border-radius: 50%;
+  margin-top: 15px;
+  background-color: slategray;
+}
+
+.image {
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px black;
 }
 
 #navbar {
   display: flex;
   justify-content: space-around;
-  background-color: grey;
+  background-color: slategray;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
   height: 35px;
@@ -45,10 +104,29 @@
   margin: auto 0;
 }
 
+.myrecipe {
+
+}
+
+.title {
+  font-size: 30px;
+  color: white;
+
+}
+
+#findResults{
+  height: 40px;
+  width: 132px;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: slategray;
+}
+
 .link {
   text-decoration: none;
   font-size: 20px;
   color: white;
+  text-shadow: 2px 2px black;
 }
 
 @keyframes App-logo-spin {

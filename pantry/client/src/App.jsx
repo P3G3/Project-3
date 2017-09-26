@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-          <main>
+          <main id="background">
             <Switch>
 
               <Route path="/recipes/:id" component={Recipes} />

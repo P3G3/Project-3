@@ -4,8 +4,8 @@ import Nav from './Nav';
 class Header extends Component {
   render() {
     return (
-      <header>
-        <h1>PANTRY</h1>
+      <header className="header">
+        <h1 className="logo">PANTRY</h1>
         <Nav />
       </header>
     );
