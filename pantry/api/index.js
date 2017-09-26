@@ -4,7 +4,7 @@ const api = {};
 
 api.results = [];
 
-api.makeAxiosGet = function(){
+api.makeAxiosGet = () => {
   axios.get(`http://food2fork.com/api/search?key=009041d6686e69bcfa223c2b77a95136&q=chicken`)
   .then(res => {
     api.results = res.data.recipes;
