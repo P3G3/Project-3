@@ -15,7 +15,6 @@ const session = require('express-session');
 const passport = require('passport');
 
 const app = express();
-const dotenv = require('dotenv').config();
 
 // Imports .env
 const dotenv = require('dotenv').config();
@@ -70,7 +69,6 @@ app.use('/results', resultsRoutes);
 const recipeRoutes = require('./routes/recipeRoutes');
 app.use('/recipes', recipeRoutes);
 
-<<<<<<< HEAD
 // Routes authentication
 const authRoutes = require('./routes/authRoutes');
 app.use('/auth', authRoutes);
