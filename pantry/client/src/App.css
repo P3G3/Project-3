@@ -62,7 +62,7 @@
 .itemHolder {
   width: 275px;
   height: 40px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: 10px 0;
 }
 .ingredientButton {
@@ -71,16 +71,20 @@
   font-size: 20px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  background-color: slategray;
+  background-color: lemonchiffon;
 }
 
 .recipeButton {
-  height: 75px;
-  width: 75px;
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+  color: white;
+  text-shadow: 1px 1px black;
+  height: 40px;
+  width: 110px;
+  border-radius: 10px;
   font-size: 25px;
-  border-radius: 50%;
   margin-top: 15px;
   background-color: slategray;
+  margin-bottom: 30px;
 }
 
 .image {
@@ -92,11 +96,13 @@
 
 #navbar {
   display: flex;
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
   justify-content: space-around;
   background-color: slategray;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
   height: 35px;
+  margin: 0;
 }
 
 #navbar li{
@@ -108,6 +114,11 @@
 
 }
 
+.recipeHeader{
+  margin: 0px;
+  padding: 10px;
+}
+
 .title {
   font-size: 30px;
   color: white;
@@ -116,17 +127,19 @@
 
 #findResults{
   height: 40px;
-  width: 132px;
+  width: 150px;
   margin: 20px;
   border-radius: 10px;
   background-color: slategray;
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+  margin-top: 5px;
 }
 
 .link {
   text-decoration: none;
   font-size: 20px;
   color: white;
-  text-shadow: 2px 2px black;
+  text-shadow: 3px 3px black;
 }
 
 @keyframes App-logo-spin {
