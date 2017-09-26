@@ -15,6 +15,7 @@ const session = require('express-session');
 const passport = require('passport');
 
 const app = express();
+const dotenv = require('dotenv').config();
 
 // Imports .env
 const dotenv = require('dotenv').config();
@@ -28,7 +29,7 @@ app.listen(PORT, () => {
 
 //---MIDDLEWARE---
 //set up static file
-app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 //set up logger middleware
 app.use(logger('dev'));
 //set up cors middleware
@@ -69,6 +70,7 @@ app.use('/results', resultsRoutes);
 const recipeRoutes = require('./routes/recipeRoutes');
 app.use('/recipes', recipeRoutes);
 
+<<<<<<< HEAD
 // Routes authentication
 const authRoutes = require('./routes/authRoutes');
 app.use('/auth', authRoutes);
@@ -77,9 +79,9 @@ app.use('/auth', authRoutes);
 const userRoutes = require('./routes/userRoutes');
 app.use('/user', userRoutes);
 
-//404 handling
-app.get('*', (req,res) => {
-  res.status(404).send({
-    message: 'Whoops! It\'s not here, playa.',
-  });
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
+

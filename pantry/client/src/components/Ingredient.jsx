@@ -13,7 +13,7 @@ class Ingredient extends Component {
 }
 
   componentDidMount(){
-   fetch(`http://localhost:3000/inventory/${this.state.id}`)
+   fetch(`/inventory/${this.state.id}`)
     .then((res) => {
         return res.json();
       }).then((jsonRes) => {
@@ -25,7 +25,7 @@ class Ingredient extends Component {
   }
 
    handleCheckboxChange(e){
-    console.log(e.target.value);
+    // console.log(e.target.value);
     if (e.target.value === 'false'){
       this.setState({
         isChecked: 'true',
@@ -45,7 +45,7 @@ class Ingredient extends Component {
       return (
         <div>
           <form onSubmit={this.handleIngredientSubmit} className="ingredient">
-            <input id={this.state.id} className="checkbox" type="checkbox" onChange={this.handleCheckboxChange} value={this.state.isChecked}/>
+            <input id={this.state.id} className="checkbox" type="checkbox" onChange={this.handleCheckboxChange} onClick={() => {this.props.handleSearchAdd(this.state.ingredient)}} value={this.state.isChecked}/>
             <h3 className='item'>{this.state.ingredient} --- {this.state.isChecked}</h3>
             <div id="ingredientButtonContainer">
               <button className="ingredientButton" id="itemEdit">{'\uD83D\uDD8A'}</button>

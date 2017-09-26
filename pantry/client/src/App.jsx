@@ -23,7 +23,7 @@ class App extends Component {
               <Route path= "/inventory" component={IngredientList} />
               <Route exact path="/" component={Home} />
               <Route exact path="/recipes" component={RecipeList} />
-              <Route exact path="/results" component={ResultList} />
+              <Route path="/results" component={ResultList} />
 
 
               <Redirect to="/" />

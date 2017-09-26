@@ -1,33 +1,54 @@
 import React,{ Component } from 'react';
-import Results from './Results';
+import axios from 'axios';
 
 class ResultList extends Component {
   constructor() {
     super();
     this.state= {
       resultData: null,
+      resultDataReceived: false,
     }
+    this.handleRecipeAdd = this.handleRecipeAdd.bind(this);
   }
-  componentDidMount(){
-    fetch('http://localhost:3001/results')
-      .then((req, res)=>{
-      console.log(req);
-      console.log(res);
-      this.setState({
-        resultData: res.data.recipes
-      })
+
+  handleRecipeAdd(event){
+    event.preventDefault();
+    axios.post(`/results`, {
+      name: this.state.resultData[event.target.id].name,
+      img: this.state.resultData[event.target.id].img,
+      url: this.state.resultData[event.target.id].url,
     })
   }
-  // renderResult() {
-  //   return this.state.resultData.map((results)=>{
-  //     return <Results result={results} key={results.id} />
-  //   });
-  // }
+
+  componentDidMount(){
+    fetch('/results')
+      .then((res)=>{
+      return res.json();
+    }).then((jsonRes) => {
+      this.setState({
+        resultData: jsonRes.data.arr,
+        resultDataReceived: true,
+      });
+      console.log(this.state.resultData);
+    });
+  }
+
+  renderResults() {
+    if(this.state.resultDataReceived){
+      return this.state.resultData.map((result, i) => {
+        return <div key={i} className="my-recipe">
+          <a href={result.url} target="_blank"><h3>{result.name}</h3></a>
+          <img src={result.img} />
+          <button onClick={this.handleRecipeAdd} id={i}>ADD</button>
+        </div>
+      });
+    }
+  }
 
   render() {
     return (
       <div className="resultList">
-
+        {this.renderResults()}
       </div>
     );
   }
