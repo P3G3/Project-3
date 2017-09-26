@@ -18,16 +18,14 @@ class IngredientList extends Component {
     this.handleItemDelete = this.handleItemDelete.bind(this);
     this.renderIngredientList = this.renderIngredientList.bind(this);
     this.handleInputItemChange = this.handleInputItemChange.bind(this);
+    this.handleSearchAdd = this.handleSearchAdd.bind(this);
   }
 
   componentDidMount() {
     fetch('/inventory')
       .then((res) => {
-        console.log(res);
         return res.json();
       }).then((jsonRes) => {
-        //console.log(jsonRes.data.items);
-        console.log(jsonRes);
         this.setState({
           ingredientListData: jsonRes.data.items,
           ingredientListDataReceived: true,
@@ -62,8 +60,15 @@ class IngredientList extends Component {
     });
   }
 
-  handleItemDelete(quoteId){
-    fetch(`/inventory/${quoteId}`, {
+  handleSearchAdd(ingredient){
+    this.setState((prevState) => {
+      return {
+      searchIngredients: prevState.searchIngredients.concat(ingredient),
+    }}
+  )}
+
+  handleItemDelete(id){
+    fetch(`/inventory/${id}`, {
       method: 'DELETE',
     })
     .then((response) => {
@@ -85,7 +90,7 @@ class IngredientList extends Component {
     //console.log(this.state.ingredientListDataReceived, this.state.ingredientListData);
     if (this.state.ingredientListDataReceived) {
       return this.state.ingredientListData.map((item) => {
-        return <Ingredient handleItemDelete={this.handleItemDelete} ingredient={item} key={item.id} />
+        return <Ingredient handleSearchAdd={this.handleSearchAdd} handleItemDelete={this.handleItemDelete} ingredient={item} key={item.id} />
       });
     }// } else return <Loading />
   }
@@ -95,7 +100,7 @@ class IngredientList extends Component {
       <div className="ingredientlist">
         <Input handleInputItemChange={this.handleInputItemChange} handleItemSubmit={this.handleItemSubmit} inputItemValue={this.state.inputItemValue}/>
         {this.renderIngredientList()}
-        <Link to={`/results`}>Recipes</Link>
+        <button><Link to={`/results/?q=${this.state.searchIngredients}`}>Find Recipes</Link></button>
       </div>
     );
   };

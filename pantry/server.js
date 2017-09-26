@@ -8,6 +8,7 @@ const methodOverride = require('method-override');
 const axios = require("axios");
 const cors = require('cors');
 const app = express();
+const dotenv = require('dotenv').config();
 
 //---PORT---
 //set up port with listener

@@ -9,6 +9,7 @@ class RecipeList extends Component {
       recipeListData: null,
       recipeListDataReceived: false,
     }
+    this.handleRecipeDelete = this.handleRecipeDelete.bind(this);
   }
 
   componentDidMount() {
@@ -25,11 +26,30 @@ class RecipeList extends Component {
       })
   }
 
+  handleRecipeDelete(id){
+    fetch(`/recipes/${id}`, {
+      method: 'DELETE',
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        fetch('/recipes')
+      .then((res) => {
+        return res.json();
+      }).then((jsonRes) => {
+        this.setState((prevState) => { return {
+          recipeListData: jsonRes.data.recipes,
+        }
+      });
+    });
+  }
+});
+}
+
   renderRecipeList() {
     // console.log(this.state.recipeListDataReceived, this.state.recipeListData);
     if (this.state.recipeListDataReceived) {
       return this.state.recipeListData.map((recipe) => {
-        return <Recipes recipe={recipe} key={recipe.id} />
+        return <Recipes handleRecipeDelete={this.handleRecipeDelete} recipe={recipe} key={recipe.id} />
       });
     }
   }

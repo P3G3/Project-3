@@ -27,9 +27,9 @@ class Recipes extends Component {
   render() {
     return (
       <div className="my-recipe">
-        <h3>{this.state.name}</h3>
+        <a href={this.state.url} target="_blank"><h3>{this.state.name}</h3></a>
         <img src={this.state.img} />
-        <a href={this.state.url} target="_blank">See Recipe</a>
+        <button className="ingredientButton" onClick={()=>{this.props.handleRecipeDelete(this.state.id)}}>{'\uD83D\uDDD1'}</button>
         </div>
       );
   };
