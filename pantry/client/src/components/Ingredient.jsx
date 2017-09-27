@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 
 class Ingredient extends Component {
   constructor(props){
     super(props);
     this.state = {
       id: this.props.ingredient.id,
+      isChecked: 'false',
       ingredient: null,
       ingredientDataRecieved: false,
     }
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+}
 
-  }
   componentDidMount(){
-   fetch(`http://localhost:3000/inventory/${this.state.id}`)
+   fetch(`/inventory/${this.state.id}`)
     .then((res) => {
         return res.json();
       }).then((jsonRes) => {
@@ -22,17 +24,30 @@ class Ingredient extends Component {
       });
   }
 
+   handleCheckboxChange(e){
+    console.log(e.target.value);
+    if (e.target.value === 'false'){
+      this.setState({
+        isChecked: 'true',
+      })
+      console.log(this.state.isChecked);
+    }
+    if(e.target.value === 'true') {
+      this.setState({
+        isChecked: 'false',
+      })
+      console.log(this.state.isChecked);
+    }
+  }
+
   renderIngredient() {
     if (this.state.ingredientDataRecieved) {
       return (
-        <div className="ingredient">
-          <input id="checkbox" type="checkbox" />
-          <h3 className='item'>{this.state.ingredient}</h3>
-          <div id="ingredientButtonContainer">
-            <button className="ingredientButton">{'\uD83D\uDD8A'}</button>
-            <button className="ingredientButton">{'\uD83D\uDDD1'}</button>
-          </div>
-        </div>
+          <form onSubmit={this.handleIngredientSubmit} className="ingredients">
+            <input id={this.state.id} className="checkbox" type="checkbox" onChange={this.handleCheckboxChange} onClick={() => {this.props.handleSearchAdd(this.state.ingredient)}} value={this.state.isChecked}/>
+            <div className='item'>{this.state.ingredient}</div>
+            <button className="ingredientButton" onClick={()=>{this.props.handleItemDelete(this.state.id)}} id="itemDelete">{'\uD83D\uDDD1'}</button>
+          </form>
       );
     }
   }
@@ -40,7 +55,7 @@ class Ingredient extends Component {
 
   render() {
     return (
-      <div>
+      <div className='itemHolder'>
         {this.renderIngredient()}
       </div>
     );

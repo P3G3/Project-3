@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 class Recipes extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
-    this.state ={
+    this.state = {
       id: this.props.recipe.id,
       url: null,
       img: null,
@@ -13,7 +13,7 @@ class Recipes extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3000/recipes/${this.state.id}`)
+    fetch(`/recipes/${this.state.id}`)
       .then((res) => {
         return res.json();
       }).then((jsonRes) => {
@@ -27,10 +27,11 @@ class Recipes extends Component {
   render() {
     return (
       <div className="my-recipe">
-        <h3>{this.state.name}</h3>
-        <img src={this.state.img} />
-        <a href={this.state.url} target="_blank">See Recipe</a>
-        </div>
+        <a className="link" href={this.state.url} target="_blank"><h3 className="recipeHeader">{this.state.name}</h3></a>
+        <img className="image" src={this.state.img} />
+        <button className="recipeButton" onClick={()=>{this.props.handleRecipeDelete(this.state.id)}}>Delete</button>
+        <hr width="90%"/>
+      </div>
       );
   };
 }

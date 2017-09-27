@@ -4,7 +4,7 @@
 
 Pantry is an app designed to find recipes using the food you have in your pantry. It helps you utilize the ingredients you have in order to cook meals.
 
-The app helps to build a list of items, that user has in their pantry. User will be able to add, delete, edit the items. Similarly, the user will be able to search the recipe depending on the items selected.  Users can also save their favorite recipe.
+The app helps to build a list of items, that user has in their pantry. User will be able to add items and remove the items after the item is used. Similarly, the user will be able to search the recipe depending on the items selected.  Users can also save their favorite recipe.
 
 
 # Priority Matrix

@@ -37,17 +37,17 @@ recipeController.show = (req,res) => {
     });
   };
 
-//controller to create a single recipe
+//controller to create a single item
 recipeController.save = (req,res) => {
   Recipe.save({
-    // name:
-    // url:
-    // img:
+    name: req.body.name,
+    img: req.body.img,
+    url: req.body.url,
   })
-    .then(recipe => {
+    .then(item => {
       res.json({
         message: 'ok',
-        data: {recipe},
+        data: {item},
       });
     })
     .catch(err => {
