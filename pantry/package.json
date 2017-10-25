@@ -10,6 +10,10 @@
     "debugger": "DEBUG=*:* npm run dev",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
+  "engines": {
+    "node": "8.5.0",
+    "npm": "5.3.0"
+  },
   "repository": {
     "type": "git",
     "url": "P3G3"
